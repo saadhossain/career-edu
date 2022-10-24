@@ -1,8 +1,9 @@
 import { StarIcon } from '@heroicons/react/24/solid';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const CoursesShowCase = ({course}) => {
-    const { image, name, price, tutor, rating } = course;
+const CoursesShowCase = ({ course }) => {
+    const {id, image, name, price, tutor, rating } = course;
     return (
         <div>
             <div className="card w-full bg-base-100 shadow-xl">
@@ -17,7 +18,9 @@ const CoursesShowCase = ({course}) => {
                         <p>Total:({rating.total})</p>
                     </span>
                     <div className="card-actions justify-center my-5">
-                        <button className="bg-edu py-2 px-3 rounded text-white font-bold">Enroll Now</button>
+                        <Link to={`/courses/${id}`}>
+                            <button className="bg-edu py-2 px-3 rounded text-white font-bold">Enroll Now</button>
+                        </Link>
                     </div>
                 </div>
             </div>
