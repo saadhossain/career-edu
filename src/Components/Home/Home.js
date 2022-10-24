@@ -1,9 +1,9 @@
 import React from 'react';
-
+import homeBanner from '../../assests/career-eud-home-banner.jpg'
 const Home = () => {
     return (
         <div>
-            <h1>Home Page</h1>
+            <img src={homeBanner} alt='Home Banner' className='max-h-screen w-full'/>
         </div>
     );
 };
