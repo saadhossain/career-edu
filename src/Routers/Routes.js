@@ -8,6 +8,7 @@ import Main from "../Layout/Main";
 import { CourseLoader } from "../Loader/CourseLoader";
 import PrivateRouter from "./PrivateRouter";
 import Profile from "../Components/Profile/Profile"
+import ErrorPage from "../Components/ErrorPage/ErrorPage";
 
 export const Routes = createBrowserRouter([
     {
@@ -25,6 +26,7 @@ export const Routes = createBrowserRouter([
             {path:'/login', element:<Login></Login>},
             {path:'/register', element:<Register></Register>},
             {path:'/profile', element:<PrivateRouter><Profile></Profile></PrivateRouter>}
-        ]
+        ],
+        errorElement:<ErrorPage></ErrorPage>
     }
 ])
