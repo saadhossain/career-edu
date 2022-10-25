@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CourseContext } from '../../Context/CourseProvider';
 import CoursesShowCase from './CoursesShowCase';
 
@@ -8,32 +9,14 @@ const Courses = () => {
         <div className='w-10/12 mx-auto my-5 flex gap-5'>
             <div className='w-3/12 hidden md:block'>
                 <div className='sticky top-5 shadow-lg p-5 rounded'>
-                    <h1 className='text-2xl font-semibold text-edu'>Search Category</h1>
+                    <h1 className='text-2xl font-semibold text-edu'>All Courses</h1>
                     {/* Search by Category Start */}
-                    <div className="form-control">
-                        <label className="label cursor-pointer flex justify-start gap-2">
-                            <input type="checkbox" className="checkbox" />
-                            <span className="label-text font-semibold">Web Development</span>
-                        </label>
-                    </div>
-                    <div className="form-control">
-                        <label className="label cursor-pointer flex justify-start gap-2">
-                            <input type="checkbox" className="checkbox" />
-                            <span className="label-text font-semibold">Programming</span>
-                        </label>
-                    </div>
-                    <div className="form-control">
-                        <label className="label cursor-pointer flex justify-start gap-2">
-                            <input type="checkbox" className="checkbox" />
-                            <span className="label-text font-semibold">Professional Course</span>
-                        </label>
-                    </div>
-                    <div className="form-control">
-                        <label className="label cursor-pointer flex justify-start gap-2">
-                            <input type="checkbox" className="checkbox" />
-                            <span className="label-text font-semibold">General</span>
-                        </label>
-                    </div>
+                    <ul>
+                        {
+                            courses.map(course => <li className='text-edu font-semibold hover:text-edu2nd mb-3'><Link to={`/courses/${course.id}`}>{course.name}</Link></li>)
+                        }
+                    </ul>
+                    
                     {/* Search by Category End */}
 
                     <h1 className='text-2xl font-semibold text-edu'>Search Instructor</h1>
