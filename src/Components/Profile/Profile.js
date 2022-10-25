@@ -1,8 +1,16 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Profile = () => {
-    const {user} = useContext(AuthContext)
+    const {user, logOut} = useContext(AuthContext)
+    //User logout functionality
+    const handleLogOut = () => {
+        logOut()
+        .then(()=>{
+            toast.success('You are Logged Out')
+        })
+    }
     return (
         <div className='w-6/12 mx-auto p-6 mt-10 rounded-lg bg-eduhf'>
             <h1 className='text-2xl font-semibold text-center text-white my-3'>Profile</h1>
@@ -15,6 +23,7 @@ const Profile = () => {
                         <h3 className='text-lg'>Status: {user?.emailVerified ? 'Verified' : 'Not Verified'}</h3>
                         <h3 className='text-lg'>User ID : {user.uid}</h3>
                         <button className='bg-edu py-2 px-3 rounded font-semibold'>Update Profile</button>
+                        <button onClick={handleLogOut} className='bg-[#F2806D] py-2 px-3 rounded font-semibold mx-5'>Log Out</button>
                     </div>
                 </div>
             </div>

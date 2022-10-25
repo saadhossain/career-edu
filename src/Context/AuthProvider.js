@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../Firebase/firebase.config';
 export const AuthContext = createContext()
@@ -45,8 +45,10 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         return signInWithPopup(auth, githubprovider)
     }
-    //Send All Data acroos the site
-    const userInfo = {user, userRegister, updateUserProfile, emailVerify, userLogin, googleLogin, githubLogin, loading};
+    //Logout Functionality
+    const logOut = () => {
+        return signOut(auth)
+    }
     //Get Logged in user from auth state
     useEffect( ()=>{
         const unSubscribe = onAuthStateChanged(auth, (currentUser =>{
@@ -55,6 +57,9 @@ const AuthProvider = ({ children }) => {
         }))
         return () => unSubscribe()
     },[auth])
+
+    //Send All Data acroos the site
+    const userInfo = {user, userRegister, updateUserProfile, emailVerify, userLogin, googleLogin, githubLogin, loading , logOut};
     return (
         <div>
             <AuthContext.Provider value={userInfo}>
