@@ -24,7 +24,7 @@ const Header = () => {
                         <li><Link to='/blogs'>Blogs</Link></li>
                         {
                             user?.uid
-                            ? <li><Link to='/profile'><img src={user.photoURL ? user.photoURL : 'https://i.ibb.co/mzkVLJt/profile.png'} alt='User Profile' title={user.displayName?user.displayName : 'Name was not Set' } className='w-10 rounded-full' /></Link></li>
+                            ? <li><Link to='/profile'><img src={user.photoURL ? user.photoURL : 'https://i.ibb.co/mzkVLJt/profile.png'} alt='Profile' title={user.displayName?user.displayName : 'Name was not Set' } className='w-10 rounded-full' /></Link></li>
                             : <li><Link to='/login'>Login</Link></li>
                         }
                     </ul>

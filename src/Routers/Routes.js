@@ -9,6 +9,7 @@ import { CourseLoader } from "../Loader/CourseLoader";
 import PrivateRouter from "./PrivateRouter";
 import Profile from "../Components/Profile/Profile"
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
+import CheckOut from "../Components/CheckOut/CheckOut";
 
 export const Routes = createBrowserRouter([
     {
@@ -20,12 +21,17 @@ export const Routes = createBrowserRouter([
             {
                 path:'/courses/:id', 
                 loader:({params})=> fetch(`http://localhost:5000/courses/${params.id}`),
-                element:<PrivateRouter><CourseSingle></CourseSingle></PrivateRouter>
+                element:<CourseSingle></CourseSingle>
             },
             {path:'/courses', element:<Courses></Courses>},
             {path:'/login', element:<Login></Login>},
             {path:'/register', element:<Register></Register>},
-            {path:'/profile', element:<PrivateRouter><Profile></Profile></PrivateRouter>}
+            {path:'/profile', element:<PrivateRouter><Profile></Profile></PrivateRouter>},
+            {
+                path:'/checkout/:id', 
+                loader:({params})=> fetch(`http://localhost:5000/courses/${params.id}`),
+                element:<PrivateRouter><CheckOut></CheckOut></PrivateRouter>
+            }
         ],
         errorElement:<ErrorPage></ErrorPage>
     }
