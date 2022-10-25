@@ -11,12 +11,15 @@ const AuthProvider = ({ children }) => {
 
     //Set user to the State
     const [user, setUser] = useState()
+    //Set Loading
+    const [loading, setLoading] = useState(true)
     //User registration
     const userRegister = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
     //Update Profile or Display Name
     const updateUserProfile = (name, photoURL) => {
+        setLoading(true)
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photoURL,
@@ -24,26 +27,31 @@ const AuthProvider = ({ children }) => {
     }
     //Email Verification
     const emailVerify = () => {
+        setLoading(true)
         return sendEmailVerification(auth.currentUser)
     }
     //User Login using email and password
     const userLogin = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
     //User Login with Google
     const googleLogin = () =>{
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
     //User Login with Github
     const githubLogin = () =>{
+        setLoading(true)
         return signInWithPopup(auth, githubprovider)
     }
     //Send All Data acroos the site
-    const userInfo = {user, userRegister, updateUserProfile, emailVerify, userLogin, googleLogin, githubLogin};
+    const userInfo = {user, userRegister, updateUserProfile, emailVerify, userLogin, googleLogin, githubLogin, loading};
     //Get Logged in user from auth state
     useEffect( ()=>{
         const unSubscribe = onAuthStateChanged(auth, (currentUser =>{
             setUser(currentUser)
+            setLoading(false)
         }))
         return () => unSubscribe()
     },[auth])
