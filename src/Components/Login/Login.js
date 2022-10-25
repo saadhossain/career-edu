@@ -67,6 +67,7 @@ const Login = () => {
         passwordReset(email)
             .then((result) => {
                 form.reset()
+                toast.success('Password Reset Link sent to your Email, please Check...')
                 setErrorMsg('')
             })
             .catch(error => {
