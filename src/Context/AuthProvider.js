@@ -19,12 +19,13 @@ const AuthProvider = ({ children }) => {
     }
     //Update Profile or Display Name
     const updateUserProfile = (name, photoURL) => {
-        setLoading(true)
+        // setLoading(true)
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photoURL,
         })
     }
+
     //Email Verification
     const emailVerify = () => {
         setLoading(true)

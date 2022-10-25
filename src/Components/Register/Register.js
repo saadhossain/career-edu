@@ -63,19 +63,19 @@ const Register = () => {
                 <form onSubmit={handleRegister} action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-md">
                         <label htmlFor="fullname" className="block">Full Name</label>
-                        <input type="text" name="fullname" id="fullname" placeholder="Full Name" className="w-full px-4 py-3 rounded-md text-edu2nd font-semibold" />
+                        <input type="text" name="fullname" id="fullname" placeholder="Full Name" className="w-full px-4 py-3 rounded-md text-eduhf font-semibold" />
                     </div>
                     <div className="space-y-1 text-md">
                         <label htmlFor="photoURL" className="block">Photo URL</label>
-                        <input type="text" name="photoURL" id="photoURL" placeholder="Photo URL" className="w-full px-4 py-3 rounded-md text-edu2nd font-semibold" />
+                        <input type="text" name="photoURL" id="photoURL" placeholder="Photo URL" className="w-full px-4 py-3 rounded-md text-eduhf font-semibold" />
                     </div>
                     <div className="space-y-1 text-md">
                         <label htmlFor="email" className="block">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-md text-edu2nd font-semibold" />
+                        <input type="email" name="email" id="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-md text-eduhf font-semibold" />
                     </div>
                     <div className="space-y-1 text-md">
                         <label htmlFor="password" className="block">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md text-edu2nd font-semibold" />
+                        <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md text-eduhf font-semibold" />
                     </div>
                     <button type='submit' className="block w-full p-3 text-center rounded-sm font-bold bg-edu">Register</button>
                 </form>

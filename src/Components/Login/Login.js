@@ -82,11 +82,11 @@ const Login = () => {
                     <p className='text-red-500 font-semibold'>{errorMsg}</p>
                     <div className="space-y-1 text-md">
                         <label htmlFor="email" className="block">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-md text-edu2nd font-semibold" />
+                        <input type="email" name="email" id="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-md text-eduhf font-semibold" />
                     </div>
                     <div className="space-y-1 text-md">
                         <label htmlFor="password" className="block">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md text-edu2nd font-semibold" />
+                        <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md text-eduhf font-semibold" />
                         <div className="flex justify-end text-xs dark:text-gray-400">
                             <label htmlFor="forgetPassModal" className="text-md cursor-pointer font-semibold">Forgot Password?</label>
                         </div>
@@ -113,13 +113,12 @@ const Login = () => {
                 <p className="text-md text-center sm:px-6">Don't have an account?
                     <Link rel="noopener noreferrer" to='/register' className="underline"> Register</Link>
                 </p>
-                {/* Modal */}
-                {/* Put this part before tag */}
+                {/* Password Reset Modal */}
                 <input type="checkbox" id="forgetPassModal" className="modal-toggle" />
                 <div className="modal">
                     <div className="modal-box relative bg-eduhf text-white">
                         <label htmlFor="forgetPassModal" className="btn btn-sm btn-circle absolute right-2 top-2 bg-edu text-white hover:bg-edu">✕</label>
-                        <div className="flex flex-col max-w-md p-2 rounded-md sm:p-10">
+                        <div className="flex flex-col max-w-md p-2 rounded-md">
                             <div className="mb-2 text-center">
                                 <h1 className="text-lg md:text-2xl font-bold">Reset Password</h1>
                             </div>
@@ -128,7 +127,7 @@ const Login = () => {
                                 <div className="space-y-2">
                                     <div className="space-y-1 text-md">
                                         <label htmlFor="email" className="block">Enter Your Email</label>
-                                        <input type="email" name="email" id="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-md text-edu2nd font-semibold" />
+                                        <input type="email" name="email" id="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-md text-eduhf font-semibold" />
                                     </div>
                                 </div>
                                 <div className="space-y-2">

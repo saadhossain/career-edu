@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
+import UpdateProfile from './UpdateProfile';
 
 const Profile = () => {
-    const {user, logOut} = useContext(AuthContext)
+    const {user, logOut } = useContext(AuthContext)
     //User logout functionality
     const handleLogOut = () => {
         logOut()
@@ -22,11 +23,12 @@ const Profile = () => {
                         <h3 className='text-lg'>Email : {user?.email}</h3>
                         <h3 className='text-lg'>Status: {user?.emailVerified ? 'Verified' : 'Not Verified'}</h3>
                         <h3 className='text-lg'>User ID : {user.uid}</h3>
-                        <button className='bg-edu py-2 px-3 rounded font-semibold'>Update Profile</button>
+                        <label htmlFor='updateProfileModal' className='bg-edu py-2 px-3 rounded font-semibold cursor-pointer'>Update Profile</label>
                         <button onClick={handleLogOut} className='bg-[#F2806D] py-2 px-3 rounded font-semibold mx-5'>Log Out</button>
                     </div>
                 </div>
             </div>
+            <UpdateProfile></UpdateProfile>
         </div>
 
 
