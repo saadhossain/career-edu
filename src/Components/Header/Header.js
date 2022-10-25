@@ -7,7 +7,6 @@ const Header = () => {
     const [expand, setExpand] = useState(false);
     //Get Information from the auth context
     const { user } = useContext(AuthContext);
-    console.log(user);
     return (
         <div className='bg-eduhf text-white'>
             <div className='flex w-10/12 mx-auto items-center justify-between py-2'>

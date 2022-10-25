@@ -1,13 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
-    const { userLogin, googleLogin, githubLogin} = useContext(AuthContext);
+    const {userLogin, googleLogin, githubLogin} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/profile'
+
+    //show error message on the ui
+    const [errorMsg, setErrorMsg] = useState('');
     //Handle User login using email and password
     const handleLogin = (e) => {
         e.preventDefault()
@@ -16,36 +19,45 @@ const Login = () => {
         const password = form.password.value;
         userLogin(email, password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
                 toast.success('Login successful...')
+                //Remove error message if succeful login
+                setErrorMsg('')
                 //Reset Form after successfully Register
                 form.reset()
                 navigate(from, {replace:true})
             })
             .catch(err => {
-                console.log(err);
+                const errMsg = err.message;
+                console.log(errMsg);
+            setErrorMsg(errMsg)
             })
     }
     //Handle user login using google
     const handleGoogleSignIn = () =>{
         googleLogin()
         .then((result)=>{
+            //Remove error message if succeful login
+            setErrorMsg('')
+            toast.success('Login Successful...')
             navigate(from, {replace:true})
         })
         .catch( error => {
-            console.error(error)
+            const errMsg = error.message;
+            setErrorMsg(errMsg)
         })
     }
     //Handle user login using GitHub
     const handleGitHubLogin = () => {
         githubLogin()
         .then((result)=>{
+            //Remove error message if succeful login
+            setErrorMsg('')
             toast.success('Login Successful...')
             navigate(from, {replace:true})
         })
         .catch(error =>{
-            console.error(error)
+            const errMsg = error.message;
+            setErrorMsg(errMsg)
         })
     }
     return (
@@ -53,6 +65,7 @@ const Login = () => {
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-eduhf text-white">
                 <h1 className="text-2xl font-bold text-center">Login to Your Account</h1>
                 <form onSubmit={handleLogin} action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+                    <p className='text-red-500 font-semibold'>{errorMsg}</p>
                     <div className="space-y-1 text-md">
                         <label htmlFor="email" className="block">Email</label>
                         <input type="email" name="email" id="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-md text-edu2nd font-semibold" />
@@ -84,7 +97,7 @@ const Login = () => {
                     </button>
                 </div>
                 <p className="text-md text-center sm:px-6">Don't have an account?
-                    <Link rel="noopener noreferrer" to='/register' className="underline"> Login</Link>
+                    <Link rel="noopener noreferrer" to='/register' className="underline"> Register</Link>
                 </p>
             </div>
         </div>
