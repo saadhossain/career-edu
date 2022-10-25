@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
     const { userLogin, googleLogin, githubLogin} = useContext(AuthContext);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/profile'
     //Handle User login using email and password
-    const handleRegister = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
@@ -19,7 +21,7 @@ const Login = () => {
                 toast.success('Login successful...')
                 //Reset Form after successfully Register
                 form.reset()
-                navigate('/')
+                navigate(from, {replace:true})
             })
             .catch(err => {
                 console.log(err);
@@ -29,8 +31,7 @@ const Login = () => {
     const handleGoogleSignIn = () =>{
         googleLogin()
         .then((result)=>{
-            const user = result.user;
-            console.log(user);
+            navigate(from, {replace:true})
         })
         .catch( error => {
             console.error(error)
@@ -40,10 +41,8 @@ const Login = () => {
     const handleGitHubLogin = () => {
         githubLogin()
         .then((result)=>{
-            const user = result.user;
-            console.log(user);
             toast.success('Login Successful...')
-            navigate('/')
+            navigate(from, {replace:true})
         })
         .catch(error =>{
             console.error(error)
@@ -53,7 +52,7 @@ const Login = () => {
         <div className='flex justify-center mt-10'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-eduhf text-white">
                 <h1 className="text-2xl font-bold text-center">Login to Your Account</h1>
-                <form onSubmit={handleRegister} action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+                <form onSubmit={handleLogin} action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-md">
                         <label htmlFor="email" className="block">Email</label>
                         <input type="email" name="email" id="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-md text-edu2nd font-semibold" />

@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Register = () => {
     const { userRegister, emailVerify, updateUserProfile, googleLogin, githubLogin} = useContext(AuthContext);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/profile'
     //Handle User Registration using email and password
     const handleRegister = (e) => {
         e.preventDefault()
@@ -39,8 +41,7 @@ const Register = () => {
     const handleGoogleSignIn = () => {
         googleLogin()
             .then((result) => {
-                const user = result.user;
-                console.log(user);
+                navigate(from, {replace:true})
             })
             .catch(error => {
                 console.error(error)
@@ -50,10 +51,8 @@ const Register = () => {
     const handleGitHubLogin = () => {
         githubLogin()
             .then((result) => {
-                const user = result.user;
-                console.log(user);
                 toast.success('Login Successful...')
-                navigate('/')
+                navigate(from, {replace:true})
             })
             .catch(error =>{
                 console.error(error)
