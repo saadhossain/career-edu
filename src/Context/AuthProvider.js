@@ -1,11 +1,13 @@
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
 import React, { createContext } from 'react';
 import app from '../Firebase/firebase.config';
 export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
-    //Google auth provider for login
+    //Google auth provider for login/registration
     const googleProvider = new GoogleAuthProvider()
+    //GitHub auth provider for login/registration
+    const githubprovider = new GithubAuthProvider()
     //User registration
     const userRegister = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -29,8 +31,12 @@ const AuthProvider = ({ children }) => {
     const googleLogin = () =>{
         return signInWithPopup(auth, googleProvider)
     }
+    //User Login with Github
+    const githubLogin = () =>{
+        return signInWithPopup(auth, githubprovider)
+    }
     //Send All Data acroos the site
-    const userInfo = { userRegister, updateUserProfile, emailVerify, userLogin, googleLogin};
+    const userInfo = { userRegister, updateUserProfile, emailVerify, userLogin, googleLogin, githubLogin};
     return (
         <div>
             <AuthContext.Provider value={userInfo}>
