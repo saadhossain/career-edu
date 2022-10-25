@@ -6,14 +6,14 @@ import CoursesShowCase from './CoursesShowCase';
 const Courses = () => {
     const courses = useContext(CourseContext)
     return (
-        <div className='w-10/12 mx-auto my-5 flex gap-5'>
-            <div className='w-3/12 hidden md:block'>
+        <div className='w-11/12 md:w-10/12 mx-auto my-5 flex gap-5'>
+            <div className='w-11/12 md:w-3/12 hidden md:block'>
                 <div className='sticky top-5 shadow-lg p-5 rounded'>
                     <h1 className='text-2xl font-semibold text-edu'>All Courses</h1>
                     {/* Search by Category Start */}
                     <ul>
                         {
-                            courses.map(course => <li className='text-edu font-semibold hover:text-edu2nd mb-3'><Link to={`/courses/${course.id}`}>{course.name}</Link></li>)
+                            courses.map(course => <li key={course.id} className='text-edu font-semibold hover:text-edu2nd mb-3'><Link to={`/courses/${course.id}`}>{course.name}</Link></li>)
                         }
                     </ul>
                     
@@ -95,7 +95,7 @@ const Courses = () => {
                     <button className='py-2 rounded bg-edu text-white font-bold w-full'>Filter</button>
                 </div>
             </div>
-            <div className='w-9/12 grid md:grid-cols-3 gap-5'>
+            <div className='w-11/12 md:w-9/12 mx-auto grid md:grid-cols-3 gap-5'>
                 {
                     courses.map(course => <CoursesShowCase key={course.id} course={course}></CoursesShowCase>)
                 }

@@ -75,8 +75,8 @@ const Login = () => {
             })
     }
     return (
-        <div className='flex justify-center mt-10'>
-            <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-eduhf text-white">
+        <div className='flex justify-center mt-5 md:mt-10'>
+            <div className="w-11/12 max-w-md p-8 space-y-3 rounded-xl bg-eduhf text-white">
                 <h1 className="text-2xl font-bold text-center">Login to Your Account</h1>
                 <form onSubmit={handleLogin} action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <p className='text-red-500 font-semibold'>{errorMsg}</p>
@@ -95,7 +95,7 @@ const Login = () => {
                 </form>
                 <div className="flex items-center pt-4 space-x-1">
                     <div className="flex-1 h-px sm:w-16 bg-white"></div>
-                    <p className="px-3 text-md">Login with social accounts</p>
+                    <p className="px-3 text-md">Social Login</p>
                     <div className="flex-1 h-px sm:w-16 bg-white"></div>
                 </div>
                 <div className="flex justify-center space-x-4">

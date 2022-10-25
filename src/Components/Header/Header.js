@@ -22,7 +22,7 @@ const Header = () => {
                     <img src={logo} alt="" className='h-10 w-10' />
                     <h2 className='text-2xl font-bold'>CareerEdu</h2>
                 </Link>
-                <div className='flex gap-2 items-center'>
+                <div className='flex gap-2 items-center z-50'>
                     <ul className={`md:flex items-center bg-eduhf px-10 py-2 gap-4 font-semibold absolute md:static duration-500 ease-in-out ${expand ? 'top-14 right-0' : 'top-[-200px] right-0'}`}>
                         <li><NavLink style={activeRoute} to='/home'>Home</NavLink></li>
                         <li><NavLink style={activeRoute} to='/courses'>Courses</NavLink></li>

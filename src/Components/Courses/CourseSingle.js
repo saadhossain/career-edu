@@ -11,7 +11,7 @@ const CourseSingle = () => {
     return (
         <div ref={ref} className='w-11/12 md:w-10/12 mx-auto my-5 p-5 md:flex gap-5'>
             <div className='w-11/12 md:w-3/12'>
-                <div className='md:sticky top-5 shadow-lg p-5 rounded'>
+                <div className='md:shadow-lg p-5 rounded'>
                     <img src={image} alt={name} className='rounded my-3' />
                     <h3 className='text-2xl font-bold text-edu'>${price}</h3>
                     <span className='text-red-500 flex items-center'><ClockIcon className='h-5 w-5'></ClockIcon><p><strong>3 hours</strong> left at this price</p></span>

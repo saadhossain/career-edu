@@ -13,10 +13,10 @@ const Profile = () => {
         })
     }
     return (
-        <div className='w-6/12 mx-auto p-6 mt-10 rounded-lg bg-eduhf'>
+        <div className='w-11/12 md:w-6/12 mx-auto p-6 mt-10 rounded-lg bg-eduhf'>
             <h1 className='text-2xl font-semibold text-center text-white my-3'>Profile</h1>
             <div className='border-t border-white'>
-                <div className='flex items-center gap-6 my-2 text-white'>
+                <div className='md:flex items-center gap-6 my-2 text-white'>
                     <img src={user && user.photoURL ?  user.photoURL : 'https://i.ibb.co/mzkVLJt/profile.png'} alt="Profile" className='w-32 rounded'/>
                     <div>
                         <h3 className='text-xl font-semibold'>{user?.displayName ? user.displayName : 'Name was not Set'}</h3>
