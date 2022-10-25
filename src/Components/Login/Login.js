@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
-    const {userLogin, googleLogin, githubLogin} = useContext(AuthContext);
+    const { userLogin, googleLogin, githubLogin, passwordReset } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/profile'
@@ -24,41 +24,54 @@ const Login = () => {
                 setErrorMsg('')
                 //Reset Form after successfully Register
                 form.reset()
-                navigate(from, {replace:true})
+                navigate(from, { replace: true })
             })
             .catch(err => {
                 const errMsg = err.message;
-                console.log(errMsg);
-            setErrorMsg(errMsg)
+                setErrorMsg(errMsg)
             })
     }
     //Handle user login using google
-    const handleGoogleSignIn = () =>{
+    const handleGoogleSignIn = () => {
         googleLogin()
-        .then((result)=>{
-            //Remove error message if succeful login
-            setErrorMsg('')
-            toast.success('Login Successful...')
-            navigate(from, {replace:true})
-        })
-        .catch( error => {
-            const errMsg = error.message;
-            setErrorMsg(errMsg)
-        })
+            .then((result) => {
+                //Remove error message if succeful login
+                setErrorMsg('')
+                toast.success('Login Successful...')
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                const errMsg = error.message;
+                setErrorMsg(errMsg)
+            })
     }
     //Handle user login using GitHub
     const handleGitHubLogin = () => {
         githubLogin()
-        .then((result)=>{
-            //Remove error message if succeful login
-            setErrorMsg('')
-            toast.success('Login Successful...')
-            navigate(from, {replace:true})
-        })
-        .catch(error =>{
-            const errMsg = error.message;
-            setErrorMsg(errMsg)
-        })
+            .then((result) => {
+                //Remove error message if succeful login
+                setErrorMsg('')
+                toast.success('Login Successful...')
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                const errMsg = error.message;
+                setErrorMsg(errMsg)
+            })
+    }
+    //Handle password reset
+    const handlePasswordReset = (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+        passwordReset(email)
+            .then((result) => {
+                form.reset()
+                setErrorMsg('')
+            })
+            .catch(error => {
+                setErrorMsg(error.message)
+            })
     }
     return (
         <div className='flex justify-center mt-10'>
@@ -74,7 +87,7 @@ const Login = () => {
                         <label htmlFor="password" className="block">Password</label>
                         <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md text-edu2nd font-semibold" />
                         <div className="flex justify-end text-xs dark:text-gray-400">
-                            <Link rel="noopener noreferrer" href="#">Forgot Password?</Link>
+                            <label htmlFor="forgetPassModal" className="text-md cursor-pointer font-semibold">Forgot Password?</label>
                         </div>
                     </div>
                     <button type='submit' className="block w-full p-3 text-center rounded-sm font-bold bg-edu">Login</button>
@@ -99,6 +112,33 @@ const Login = () => {
                 <p className="text-md text-center sm:px-6">Don't have an account?
                     <Link rel="noopener noreferrer" to='/register' className="underline"> Register</Link>
                 </p>
+                {/* Modal */}
+                {/* Put this part before tag */}
+                <input type="checkbox" id="forgetPassModal" className="modal-toggle" />
+                <div className="modal">
+                    <div className="modal-box relative bg-eduhf text-white">
+                        <label htmlFor="forgetPassModal" className="btn btn-sm btn-circle absolute right-2 top-2 bg-edu text-white hover:bg-edu">✕</label>
+                        <div className="flex flex-col max-w-md p-2 rounded-md sm:p-10">
+                            <div className="mb-2 text-center">
+                                <h1 className="text-lg md:text-2xl font-bold">Reset Password</h1>
+                            </div>
+                            <form onSubmit={handlePasswordReset} className="space-y-4 ng-untouched ng-pristine ng-valid">
+                                <p className='text-red-500 font-semibold'>{errorMsg}</p>
+                                <div className="space-y-2">
+                                    <div className="space-y-1 text-md">
+                                        <label htmlFor="email" className="block">Enter Your Email</label>
+                                        <input type="email" name="email" id="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-md text-edu2nd font-semibold" />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <div>
+                                        <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-edu">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

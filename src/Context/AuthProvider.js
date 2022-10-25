@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
-import app from '../Firebase/firebase.config';
+import app from '../Firebase/firebase.config'
 export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
@@ -35,6 +35,10 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
+    //Send user a password reset email
+    const passwordReset = (email) => {
+        return sendPasswordResetEmail(auth, email)
+    }
     //User Login with Google
     const googleLogin = () =>{
         setLoading(true)
@@ -59,7 +63,7 @@ const AuthProvider = ({ children }) => {
     },[auth])
 
     //Send All Data acroos the site
-    const userInfo = {user, userRegister, updateUserProfile, emailVerify, userLogin, googleLogin, githubLogin, loading , logOut};
+    const userInfo = {user, userRegister, updateUserProfile, emailVerify, userLogin, passwordReset, googleLogin, githubLogin, loading , logOut};
     return (
         <div>
             <AuthContext.Provider value={userInfo}>

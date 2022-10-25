@@ -5,7 +5,6 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const CourseSingle = () => {
     const course = useLoaderData()
-    console.log(course);
     const {id, name, image, price, tutor, rating, description, feature } = course;
     return (
         <div className='w-10/12 mx-auto my-5 md:flex gap-5'>

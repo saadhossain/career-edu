@@ -18,8 +18,6 @@ const Register = () => {
         const password = form.password.value;
         userRegister(email, password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
                 //Send verification email to the user
                 emailVerify()
                     .then(() => {

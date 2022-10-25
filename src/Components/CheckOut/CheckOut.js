@@ -5,7 +5,6 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const CheckOut = () => {
     const course = useLoaderData()
-    console.log(course);
     const { id, name, image, price, tutor, rating, description, feature } = course;
     return (
         <div className='w-11/12 md:w-8/12 mx-auto my-10'>
