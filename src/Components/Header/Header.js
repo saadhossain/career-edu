@@ -1,12 +1,20 @@
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assests/career-edu-logo.png';
 import { AuthContext } from '../../Context/AuthProvider';
 const Header = () => {
     const [expand, setExpand] = useState(false);
     //Get Information from the auth context
     const { user } = useContext(AuthContext);
+    //Styling Active Route
+    const activeRoute = ({isActive}) => {
+        return {
+            color: isActive? '#00508F' :'white',
+            fontWeight: isActive && 'bold'
+        }
+    }
+
     return (
         <div className='bg-eduhf text-white'>
             <div className='flex w-10/12 mx-auto items-center justify-between py-2'>
@@ -16,11 +24,11 @@ const Header = () => {
                 </Link>
                 <div className='flex gap-2 items-center'>
                     <ul className={`md:flex items-center bg-eduhf px-10 py-2 gap-4 font-semibold absolute md:static duration-500 ease-in-out ${expand ? 'top-14 right-0' : 'top-[-200px] right-0'}`}>
-                        <li><Link to='/'>Home</Link></li>
-                        <li><Link to='/courses'>Courses</Link></li>
-                        <li><Link to='/faqs'>FAQ's</Link></li>
-                        <li><Link to='/offer'>Offer</Link></li>
-                        <li><Link to='/blogs'>Blogs</Link></li>
+                        <li><NavLink style={activeRoute} to='/home'>Home</NavLink></li>
+                        <li><NavLink style={activeRoute} to='/courses'>Courses</NavLink></li>
+                        <li><NavLink style={activeRoute} to='/faqs'>FAQ's</NavLink></li>
+                        <li><NavLink style={activeRoute} to='/offer'>Offer</NavLink></li>
+                        <li><NavLink style={activeRoute} to='/blogs'>Blogs</NavLink></li>
                         {
                             user?.uid
                             ? <li><Link to='/profile'><img src={user.photoURL ? user.photoURL : 'https://i.ibb.co/mzkVLJt/profile.png'} alt='Profile' title={user.displayName?user.displayName : 'Name was not Set' } className='w-10 rounded-full' /></Link></li>

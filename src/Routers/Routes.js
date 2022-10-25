@@ -19,6 +19,7 @@ export const Routes = createBrowserRouter([
         element: <Main></Main>,
         children: [
             { path: '/', element: <Home></Home> },
+            { path: '/home', element: <Home></Home> },
             {
                 path: '/courses/:id',
                 loader: ({ params }) => fetch(`https://career-edu-server.vercel.app/courses/${params.id}`),
