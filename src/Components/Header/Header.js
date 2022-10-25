@@ -8,16 +8,16 @@ const Header = () => {
     //Get Information from the auth context
     const { user } = useContext(AuthContext);
     //Styling Active Route
-    const activeRoute = ({isActive}) => {
+    const activeRoute = ({ isActive }) => {
         return {
-            color: isActive? '#00508F' :'white',
+            color: isActive ? '#00508F' : 'white',
             fontWeight: isActive && 'bold'
         }
     }
 
     return (
         <div className='bg-eduhf text-white'>
-            <div className='flex w-10/12 mx-auto items-center justify-between py-2'>
+            <div className='flex w-full md:w-10/12 mx-auto items-center justify-between py-2 px-2 md:px-0'>
                 <Link to='/' className='flex items-center gap-2'>
                     <img src={logo} alt="" className='h-10 w-10' />
                     <h2 className='text-2xl font-bold'>CareerEdu</h2>
@@ -31,8 +31,8 @@ const Header = () => {
                         <li><NavLink style={activeRoute} to='/blogs'>Blogs</NavLink></li>
                         {
                             user?.uid
-                            ? <li><Link to='/profile'><img src={user.photoURL ? user.photoURL : 'https://i.ibb.co/mzkVLJt/profile.png'} alt='Profile' title={user.displayName?user.displayName : 'Name was not Set' } className='w-10 rounded-full' /></Link></li>
-                            : <li><Link to='/login'>Login</Link></li>
+                                ? <li className='hidden md:block'><Link to='/profile'><img src={user.photoURL ? user.photoURL : 'https://i.ibb.co/mzkVLJt/profile.png'} alt='Profile' title={user.displayName ? user.displayName : 'Name was not Set'} className='w-10 rounded-full' /></Link></li>
+                                : <li><Link to='/login'>Login</Link></li>
                         }
                     </ul>
                     <div className="form-control">
@@ -40,6 +40,10 @@ const Header = () => {
                             <input type="checkbox" className="toggle" />
                         </label>
                     </div>
+                    {
+                        user?.uid
+                        && <span className='md:hidden'><Link to='/profile'><img src={user.photoURL ? user.photoURL : 'https://i.ibb.co/mzkVLJt/profile.png'} alt='Profile' title={user.displayName ? user.displayName : 'Name was not Set'} className='w-10 rounded-full' /></Link></span>
+                    }
                     <div className='h-8 w-8 md:hidden' onClick={() => setExpand(!expand)}>
                         {
                             expand ? <XMarkIcon></XMarkIcon> : <Bars3Icon></Bars3Icon>
