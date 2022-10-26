@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import homeBanner from '../../assests/career-eud-home-banner.jpg'
 import { CourseContext } from '../../Context/CourseProvider';
 import CoursesShowCase from '../Courses/CoursesShowCase';
+import RecentCourses from './RecentCourses';
 const Home = () => {
     const courses = useContext(CourseContext);
     const featuredCourse = courses.slice(4,8)
@@ -16,6 +17,7 @@ const Home = () => {
                    featuredCourse.map(course=> <CoursesShowCase key={course.id} course={course}></CoursesShowCase>) 
                 }
             </div>
+            <RecentCourses></RecentCourses>
         </div>
     );
 };
