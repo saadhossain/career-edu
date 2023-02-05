@@ -20,3 +20,11 @@ code {
 .slick-next::before{
   content: url('./assests/right-arrow.png')
 }
+.slick-prev{
+  left:10px;
+  z-index: 2;
+}
+.slick-next{
+  right:10px;
+  z-index: 2;
+}

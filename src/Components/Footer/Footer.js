@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='bg-eduhf text-white py-5 mt-10'>
+        <div className='bg-eduhf text-white py-5'>
             <div className='md:w-10/12 mx-auto'>
-                <section className='grid md:grid-cols-4 justify-between gap-5 md:gap-10 ml-10 md:ml-0'>
+                <section className='grid grid-cols-2 md:grid-cols-4 justify-between gap-5 md:gap-10 ml-10 md:ml-0'>
                     {/* Compnay information */}
                     <div>
                         <h4 className='text-xl font-bold'>Company</h4>
