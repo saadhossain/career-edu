@@ -6,7 +6,8 @@ module.exports = {
           colors:{
             "edu": "#00508F",
             "edu2nd": "#140C40",
-            "eduhf": "#06112A"
+            "eduhf": "#06112A",
+            "eduhover": "#06112A"
           }
         },
     },

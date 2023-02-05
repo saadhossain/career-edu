@@ -3,9 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CoursesShowCase = ({ course }) => {
-    const {id, image, name, price, tutor, rating } = course;
+    const { id, image, name, price, tutor, rating } = course;
     return (
-        <div>
+        <div className='mx-3 mb-10'>
             <div className="card w-full bg-base-100 shadow-xl">
                 <figure><img src={image} alt={name} className='w-full rounded-t' /></figure>
                 <div className="card-body">
@@ -19,7 +19,7 @@ const CoursesShowCase = ({ course }) => {
                     </span>
                     <div className="card-actions justify-center my-5">
                         <Link to={`/courses/${id}`}>
-                            <button className="bg-edu py-2 px-3 rounded text-white font-bold">Enroll Now</button>
+                            <button className="bg-edu py-2 px-3 rounded text-white font-bold duration-500 ease-in-out hover:bg-eduhover">Enroll Now</button>
                         </Link>
                     </div>
                 </div>

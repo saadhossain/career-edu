@@ -43,7 +43,6 @@ const Header = () => {
                                 <li><NavLink style={activeRoute} to='/home'>Home</NavLink></li>
                                 <li><NavLink style={activeRoute} to='/courses'>Courses</NavLink></li>
                                 <li><NavLink style={activeRoute} to='/faqs'>FAQ's</NavLink></li>
-                                <li><NavLink style={activeRoute} to='/blogs'>Blogs</NavLink></li>
                                 {
                                     user?.uid
                                         ? <li className='hidden md:block'><Link to='/profile'><img src={user.photoURL ? user.photoURL : 'https://i.ibb.co/mzkVLJt/profile.png'} alt='Profile' title={user.displayName ? user.displayName : 'Name was not Set'} className='w-10 rounded-full' /></Link></li>
