@@ -57,7 +57,7 @@ const Register = () => {
             })
     }
     return (
-        <div className='flex justify-center mt-5 md:mt-10'>
+        <div className='flex justify-center my-5 md:my-10'>
             <div className="w-11/12 max-w-md p-8 space-y-3 rounded-xl bg-eduhf text-white">
                 <h1 className="text-2xl font-bold text-center">Register for A Account</h1>
                 <form onSubmit={handleRegister} action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
